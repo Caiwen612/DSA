@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -33,6 +34,13 @@ public class PostOfficeSim extends javax.swing.JFrame {
     private ArrayList<Customer> serviceList = new ArrayList<Customer>();
     private String counterStr = "Counter ";
     private int counterNoIndex = counterStr.length();
+
+    //Create 5 counter 
+    private Queue<Customer> counter1 = new LinkedList<Customer>();
+    private Queue<Customer> counter2 = new LinkedList<Customer>();
+    private Queue<Customer> counter3 = new LinkedList<Customer>();
+    private Queue<Customer> counter4 = new LinkedList<Customer>();
+    private Queue<Customer> counter5 = new LinkedList<Customer>();
 
     /**
      * Creates new form PostOfficeSim
@@ -387,7 +395,47 @@ public class PostOfficeSim extends javax.swing.JFrame {
         Customer newCustomer = new Customer(nextNumber);
         q.offer(newCustomer);//add customer to queue
         nextNumber++;//increase next number
+        //Add customer to counter queue
+        checkQueue();
+
     }//GEN-LAST:event_jbtTakeNumberActionPerformed
+
+    //TODO: Check whether any counter have empty space or not, If got put in customer.
+    private void checkQueue(){
+        if(counter1.isEmpty() || counter2.isEmpty() || counter3.isEmpty() || counter4.isEmpty() || counter5.isEmpty() ) {
+            if (!q.isEmpty()) {
+                Customer customer = q.remove();
+                if (customer.getCounter() == 0) {
+                    if (counter1.isEmpty()) {
+                        counter1.add(customer);
+                        customer.setCounter(1);
+                        announceNumber(customer);
+                        updateDisplay(customer);
+                    } else if (counter2.isEmpty()) {
+                        counter2.add(customer);
+                        customer.setCounter(2);
+                        announceNumber(customer);
+                        updateDisplay(customer);
+                    } else if (counter3.isEmpty()) {
+                        counter3.add(customer);
+                        customer.setCounter(3);
+                        announceNumber(customer);
+                        updateDisplay(customer);
+                    } else if (counter4.isEmpty()) {
+                        counter4.add(customer);
+                        customer.setCounter(4);
+                        announceNumber(customer);
+                        updateDisplay(customer);
+                    } else if (counter5.isEmpty()) {
+                        counter5.add(customer);
+                        customer.setCounter(5);
+                        announceNumber(customer);
+                        updateDisplay(customer);
+                    }
+                }
+            }
+        }
+    }
 
     private void jtfRow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfRow2ActionPerformed
         // TODO add your handling code here:
