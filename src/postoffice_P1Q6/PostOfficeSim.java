@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -35,7 +36,7 @@ public class PostOfficeSim extends javax.swing.JFrame {
     private String counterStr = "Counter ";
     private int counterNoIndex = counterStr.length();
 
-    //Create 5 counter 
+    //Create 5 counter
     private Queue<Customer> counter1 = new LinkedList<Customer>();
     private Queue<Customer> counter2 = new LinkedList<Customer>();
     private Queue<Customer> counter3 = new LinkedList<Customer>();
@@ -96,9 +97,49 @@ public class PostOfficeSim extends javax.swing.JFrame {
 
     private class CounterListener implements ActionListener {
 
+        //TODO: Press counter button to release customer
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            switch (e.getActionCommand()){
+                case "Counter 1":
+                    System.out.println("Counter 1 button has been pressed");
+                    Customer customer1 = counter1.remove();
+                    //Set end times for customer.
+                    customer1.setServeTime(new GregorianCalendar());
+                    //add finisher customer to service list for display result.
+                    serviceList.add(customer1);
+                    //put next customer into this counter.
+                    checkQueue();
+                    break;
+                case "Counter 2":
+                    System.out.println("Counter 2 button has been pressed");
+                    Customer customer2 = counter2.remove();
+                    customer2.setServeTime(new GregorianCalendar());
+                    serviceList.add(customer2);
+                    checkQueue();
+                    break;
+                case "Counter 3":
+                    System.out.println("Counter 3 button has been pressed");
+                    Customer customer3 = counter3.remove();
+                    customer3.setServeTime(new GregorianCalendar());
+                    serviceList.add(customer3);
+                    checkQueue();
+                    break;
+                case "Counter 4":
+                    System.out.println("Counter 4 button has been pressed");
+                    Customer customer4 = counter4.remove();
+                    customer4.setServeTime(new GregorianCalendar());
+                    serviceList.add(customer4);
+                    checkQueue();
+                    break;
+                case "Counter 5":
+                    System.out.println("Counter 5 button has been pressed");
+                    Customer customer5 = counter5.remove();
+                    customer5.setServeTime(new GregorianCalendar());
+                    serviceList.add(customer5);
+                    checkQueue();
+                    break;
+            }
         }
 
     }
