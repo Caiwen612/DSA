@@ -46,8 +46,8 @@ public class Customer {
   }
 
   public String toString() {
-    return String.format("%-12d %-23s %-27s %-20s",
-            seqNo, getTime(arrTime), getTime(serveTime), "Counter " + counter);
+    return String.format("%-12d %-23s %-27s %-20s %-20s",
+            seqNo, getTime(arrTime), getTime(serveTime), "Counter " + counter, getWaitingTime());
   }
 
 }

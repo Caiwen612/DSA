@@ -423,6 +423,23 @@ public class PostOfficeSim extends javax.swing.JFrame {
         reportFrame.setSize(600, 800);
         reportFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         reportFrame.setVisible(true);
+
+        //Display result
+        int i  = 0;
+        for(Customer customer: serviceList){
+            jtaReport.append((i+1) + ".       "+ customer.toString() + "\n");
+            i++;
+        }
+
+        //Calculate average times
+        double average = 0;
+        int j = 0;
+        for (Customer customer: serviceList){
+            average += customer.getWaitingTime();
+            j++;
+        }
+        jtaReport.append("\nTotal customer served : " + serviceList.size());
+        jtaReport.append("\n Average waiting time: " + average);
     }//GEN-LAST:event_jbtReportActionPerformed
 
     private void jbtCounter5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCounter5ActionPerformed
