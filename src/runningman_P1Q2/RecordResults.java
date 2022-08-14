@@ -1,8 +1,10 @@
 package runningman_P1Q2;
 
+import javax.swing.*;
 import java.io.*;
-import java.util.*;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * RecordResults.java A client program that uses the List ADT to keep track
@@ -179,7 +181,29 @@ public class RecordResults extends javax.swing.JFrame {
   private void jtfCurrentPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCurrentPositionActionPerformed
   }//GEN-LAST:event_jtfCurrentPositionActionPerformed
 
+  //TODO: Set name based on number(input user)
   private void jtfNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNumberActionPerformed
+    System.out.println("Number text box has been pressed enter");
+
+    //Check whether user input same with register runner list or not
+    boolean status = false;
+    for(Runner runner: runnerList){
+      if(Objects.equals(jtfNumber.getText(), Integer.toString(runner.getNumber()))){
+        jtfName.setText(runner.getName());
+        status = true;
+        break;
+      }
+    }
+
+    //Display error message if user key in wrong data which not register in Registration.java
+    if(!status){
+      JOptionPane.showMessageDialog(null,"Invalid number","ERROR",JOptionPane.ERROR_MESSAGE);
+    }
+
+    //Check the data that u key in Registration.java in console
+    for(Runner runner: runnerList){
+      System.out.println(runner);
+    }
     
   }//GEN-LAST:event_jtfNumberActionPerformed
 
