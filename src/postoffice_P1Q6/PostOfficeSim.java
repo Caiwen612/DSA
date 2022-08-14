@@ -1,16 +1,14 @@
 package postoffice_P1Q6;
 
+import javax.swing.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  * PostOfficeSim.java A client program that uses 
@@ -382,8 +380,13 @@ public class PostOfficeSim extends javax.swing.JFrame {
         counterListener.actionPerformed(evt);
     }//GEN-LAST:event_jbtCounter5ActionPerformed
 
+    //TODO: Display number and assign customer to counter
     private void jbtTakeNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTakeNumberActionPerformed
-
+        System.out.println("Take a number Button has been press");
+        jtaSlip.setText("Your number: " + nextNumber);
+        Customer newCustomer = new Customer(nextNumber);
+        q.offer(newCustomer);//add customer to queue
+        nextNumber++;//increase next number
     }//GEN-LAST:event_jbtTakeNumberActionPerformed
 
     private void jtfRow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfRow2ActionPerformed
