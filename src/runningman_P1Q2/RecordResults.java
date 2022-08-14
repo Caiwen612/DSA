@@ -174,7 +174,52 @@ public class RecordResults extends javax.swing.JFrame {
   private void jbtAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAddActionPerformed
   }//GEN-LAST:event_jbtAddActionPerformed
 
+  //TODO: After confirm button has been pressed
   private void jbtConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtConfirmActionPerformed
+    System.out.println("Confirm button has been press");
+
+    //EXTRA: To check if a runner number that is entered exists
+    Runner result = null;
+    boolean status = false;
+    boolean sameRecord = false;
+
+    for (Runner runner : runnerList) {
+      if (Objects.equals(jtfNumber.getText(), Integer.toString(runner.getNumber()))) {
+        result = runner;
+        //Extra:  A runner should only be recorded as crossing the finishing line at most once
+        for(Runner finishRunner : finisherList){
+          if(result.equals(finishRunner)){
+            sameRecord = true;
+            break;
+          }
+        }
+        if(!sameRecord){
+          finisherList.add(result);
+          currentPosition++;//increase position
+          status = true;
+        } else{
+          JOptionPane.showMessageDialog(null, "This runner already in the record", "ERROR", JOptionPane.ERROR_MESSAGE);}
+      }
+    }
+
+    //Display error message if runner not in database
+    if (!status && !sameRecord) {
+      JOptionPane.showMessageDialog(null, "Cannot add the result because invalid runner number\nSolution: Please register the runner ", "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+
+    //Display result
+    jtaResults.setText("MARATHON RESULTS");
+    for (int i = 0; i < finisherList.size(); i++) {
+      Runner runner = finisherList.get(i);
+      jtaResults.append("\n" + (i + 1) + ". No. " + runner.getNumber() + "\t\t" + runner.getName());
+    }
+
+    //Clear all entry after input data
+    jtfName.setText("");
+    jtfNumber.setText("");
+    jtfCurrentPosition.setText(String.valueOf(currentPosition));
+
+
 
   }//GEN-LAST:event_jbtConfirmActionPerformed
 
