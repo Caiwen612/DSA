@@ -29,7 +29,7 @@ public class CheckPalindrome {
 
 
     }
-    
+
     public static boolean isPalindrome(String word){
         Stack<Character> letterStack = new Stack<>();
         Queue<Character> letterQueue = new LinkedList<>();
